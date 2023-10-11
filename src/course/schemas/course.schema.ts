@@ -1,4 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
+import { User } from 'src/auth/schemas/user.schema';
 // import { User } from 'src/user/schemas/user.schema';
 // import { HydratedDocument } from 'mongoose';
 
@@ -26,8 +28,17 @@ export class Course {
   @Prop()
   PopularTopicID: string;
 
-  @Prop()
-  author: string;
+  // @Prop()
+  // author: string;
+
+  @Prop({ default: 0 })
+  likes: number;
+
+  @Prop({ default: 0 })
+  dislikes: number;
+
+  @Prop({ type: mongoose.Schema.Types.String })
+  author: User;
 }
 
 export const CourseSchema = SchemaFactory.createForClass(Course);
