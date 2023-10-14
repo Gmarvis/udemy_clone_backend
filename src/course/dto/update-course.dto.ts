@@ -19,7 +19,7 @@ export class UpdateCourseDto {
   readonly image: string;
 
   @IsOptional()
-  readonly video: [];
+  readonly materials: [];
 
   @IsOptional()
   @IsString()
@@ -27,6 +27,12 @@ export class UpdateCourseDto {
 
   @IsEmpty({ message: 'you can not pass user id' })
   readonly author: User;
+
+  @IsOptional()
+  category: string;
+
+  @IsOptional()
+  subcategory: string;
 
   @IsOptional()
   @IsNumber()

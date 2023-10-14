@@ -23,13 +23,16 @@ export class Course {
   image: string;
 
   @Prop()
-  video: [];
+  materials: [];
+
+  @Prop()
+  category: string;
+
+  @Prop()
+  subcategory: string;
 
   @Prop()
   PopularTopicID: string;
-
-  // @Prop()
-  // author: string;
 
   @Prop({ default: 0 })
   likes: number;

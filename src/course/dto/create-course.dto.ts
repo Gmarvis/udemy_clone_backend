@@ -18,7 +18,14 @@ export class CreateCourseDto {
   @IsString()
   readonly image: string;
 
-  readonly video: [];
+  @IsNotEmpty()
+  readonly materials: [];
+
+  @IsNotEmpty()
+  category: string;
+
+  @IsNotEmpty()
+  subcategory: string;
 
   readonly PopularTopicID: string;
 

@@ -7,6 +7,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Course } from './schemas/course.schema';
 import * as mongoose from 'mongoose';
 import { User } from '../auth/schemas/user.schema';
+import { Query } from 'express-serve-static-core';
 
 @Injectable()
 export class CourseService {
@@ -16,12 +17,21 @@ export class CourseService {
   ) {}
 
   // find all courses
-  async findAll(): Promise<Course[]> {
-    const courses = await this.courseModel.find();
+  async findAll(query: Query): Promise<Course[]> {
+    // search keyword
+    const keyword = query.keyword
+      ? {
+          author: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+    const courses = await this.courseModel.find({ ...keyword });
     return courses;
   }
 
-  // create book function
+  // create course function
   async createCourse(course: Course, user: User): Promise<Course> {
     const data = Object.assign(course, { author: user.name });
 

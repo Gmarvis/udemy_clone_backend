@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -14,6 +15,7 @@ import { Course } from './schemas/course.schema';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { Query as ExpressQuery } from 'express-serve-static-core';
 
 @Controller('courses')
 export class CourseController {
@@ -21,8 +23,8 @@ export class CourseController {
 
   //get all courses
   @Get()
-  async getAllCourses(): Promise<Course[]> {
-    return this.courseService.findAll();
+  async getAllCourses(@Query() query: ExpressQuery): Promise<Course[]> {
+    return this.courseService.findAll(query);
   }
 
   //Get course by id
