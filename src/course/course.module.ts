@@ -3,9 +3,11 @@ import { CourseController } from './course.controller';
 import { CourseService } from './course.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CourseSchema } from './schemas/course.schema';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     MongooseModule.forFeature([{ name: 'Course', schema: CourseSchema }]),
   ],
   controllers: [CourseController],

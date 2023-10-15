@@ -1,7 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Course } from './schemas/course.schema';
 import * as mongoose from 'mongoose';
+import { User } from '../auth/schemas/user.schema';
+import { Query } from 'express-serve-static-core';
 
 @Injectable()
 export class CourseService {
@@ -11,19 +17,35 @@ export class CourseService {
   ) {}
 
   // find all courses
-  async findAll(): Promise<Course[]> {
-    const courses = await this.courseModel.find();
+  async findAll(query: Query): Promise<Course[]> {
+    // search keyword
+    const keyword = query.keyword
+      ? {
+          author: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+    const courses = await this.courseModel.find({ ...keyword });
     return courses;
   }
 
-  // create book function
-  async createCourse(course: Course): Promise<Course> {
-    const res = await this.courseModel.create(course);
+  // create course function
+  async createCourse(course: Course, user: User): Promise<Course> {
+    const data = Object.assign(course, { author: user.name });
+
+    const res = await this.courseModel.create(data);
     return res;
   }
 
   // find course by id
   async findById(id: string): Promise<Course> {
+    const isValidId = mongoose.isValidObjectId(id);
+    if (!isValidId) {
+      throw new BadRequestException('please enter a valid id');
+    }
+
     const course = await this.courseModel.findById(id);
 
     if (!course) {
@@ -33,7 +55,7 @@ export class CourseService {
     return course;
   }
 
-  // Update book by ID
+  // Update course by ID
   async UpdateById(id: string, course: Course): Promise<Course> {
     return await this.courseModel.findByIdAndUpdate(id, course, {
       new: true,
@@ -41,9 +63,20 @@ export class CourseService {
     });
   }
 
+  //get course by Authors name
+  /*******************find course by author is not working yet************************/
+  async findByAuthor(name: string): Promise<Course[]> {
+    return await this.courseModel.find({ name });
+  }
+  /*******************find course by author is not working yet************************/
+
   // find course and delete
   async findAndDelete(id: string): Promise<Course> {
     const course = await this.courseModel.findByIdAndDelete(id);
+
+    if (!course) {
+      throw new NotFoundException('course not found');
+    }
     return course;
   }
 }

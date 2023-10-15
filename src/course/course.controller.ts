@@ -6,11 +6,16 @@ import {
   Param,
   Post,
   Put,
+  Query,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { Course } from './schemas/course.schema';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { AuthGuard } from '@nestjs/passport';
+import { Query as ExpressQuery } from 'express-serve-static-core';
 
 @Controller('courses')
 export class CourseController {
@@ -18,8 +23,8 @@ export class CourseController {
 
   //get all courses
   @Get()
-  async getAllCourses(): Promise<Course[]> {
-    return this.courseService.findAll();
+  async getAllCourses(@Query() query: ExpressQuery): Promise<Course[]> {
+    return this.courseService.findAll(query);
   }
 
   //Get course by id
@@ -31,6 +36,16 @@ export class CourseController {
     return this.courseService.findById(id);
   }
 
+  /*******************find course by author is not working yet************************/
+  @Get('author/:name')
+  async getByAuthor(
+    @Param('name')
+    name: string,
+  ): Promise<Course[]> {
+    return this.getByAuthor(name);
+  }
+  /*******************find course by author is not working yet************************/
+
   //delete course
   @Delete(':id')
   async deleteCourse(
@@ -41,12 +56,15 @@ export class CourseController {
   }
 
   //Post a course
-  @Post(':id')
+  @Post()
+  @UseGuards(AuthGuard())
   async createCourse(
     @Body()
     course: CreateCourseDto,
+    @Req() req,
   ): Promise<Course> {
-    return this.courseService.createCourse(course);
+    // console.log(req);
+    return this.courseService.createCourse(course, req.user);
   }
 
   //Find Course and update
