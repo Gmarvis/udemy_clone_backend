@@ -1,4 +1,4 @@
-const Points = [
+export const Points = [
   {
     name: 'signup',
     endPoint: 'localhost:3000/auth/signup',
