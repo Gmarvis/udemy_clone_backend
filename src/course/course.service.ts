@@ -55,6 +55,36 @@ export class CourseService {
     return course;
   }
 
+  // filter couses by category
+  async findByCategory(query: Query): Promise<Course[]> {
+    // search keyword
+    const keyword = query.keyword
+      ? {
+          category: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+    const courses = await this.courseModel.find({ ...keyword });
+    return courses;
+  }
+
+  // filter couses by subCategory
+  async findBySubCategory(query: Query): Promise<Course[]> {
+    // search keyword
+    const keyword = query.keyword
+      ? {
+          subcategory: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+    const courses = await this.courseModel.find({ ...keyword });
+    return courses;
+  }
+
   // Update course by ID
   async UpdateById(id: string, course: Course): Promise<Course> {
     return await this.courseModel.findByIdAndUpdate(id, course, {
