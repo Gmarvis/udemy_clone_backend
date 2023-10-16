@@ -32,6 +32,9 @@ export class CreateCourseDto {
   @IsEmpty({ message: 'you can not pass user id' })
   readonly author: User;
 
+  @IsEmpty()
+  authorInfor: [];
+
   likes: number;
 
   dislikes: number;

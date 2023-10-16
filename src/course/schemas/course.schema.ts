@@ -42,6 +42,9 @@ export class Course {
 
   @Prop({ type: mongoose.Schema.Types.String })
   author: User;
+
+  @Prop()
+  authorInfor: [];
 }
 
 export const CourseSchema = SchemaFactory.createForClass(Course);

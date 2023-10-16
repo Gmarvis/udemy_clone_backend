@@ -6,6 +6,7 @@ import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/signUp.dto';
 import { LoginDto } from './dto/login.dto';
 import { User } from './schemas/user.schema';
+import { UpdateProfileDto } from './dto/updateProfile.dto';
 
 @Injectable()
 export class AuthService {
@@ -47,9 +48,25 @@ export class AuthService {
     if (!isPasswordMatch) {
       throw new UnauthorizedException('in correct password');
     }
-
     const token = this.jwtService.sign({ id: user._id });
-
     return { token };
+  }
+
+  // update profile function
+  async updateProfile(id: string, user: UpdateProfileDto): Promise<User> {
+    return await this.userModel.findByIdAndUpdate(id, user, {
+      new: true,
+      runValidators: true,
+    });
+  }
+
+  // get all user
+  async getAllUser(): Promise<User[]> {
+    return await this.userModel.find();
+  }
+
+  // find user by id
+  async findUser(id: string): Promise<User> {
+    return await this.userModel.findById(id);
   }
 }

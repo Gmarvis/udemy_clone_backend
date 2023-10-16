@@ -13,6 +13,30 @@ export class User extends Document {
   email: string;
 
   @Prop()
+  lastname: string;
+
+  @Prop()
+  avatar: string;
+
+  @Prop()
+  headline: string;
+
+  @Prop()
+  biography: string;
+
+  @Prop()
+  website: string;
+
+  @Prop()
+  facebook: string;
+
+  @Prop()
+  linkedin: string;
+
+  @Prop()
+  youtube: string;
+
+  @Prop()
   @Exclude()
   password: string;
 }

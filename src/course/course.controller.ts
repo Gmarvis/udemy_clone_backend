@@ -27,6 +27,20 @@ export class CourseController {
     return this.courseService.findAll(query);
   }
 
+  // get courses by categoy name
+  @Get('category')
+  async getCourseByCategory(@Query() query: ExpressQuery): Promise<Course[]> {
+    return this.courseService.findByCategory(query);
+  }
+
+  // get courses by subcategory name
+  @Get('subcategory')
+  async getCourseBySubcategory(
+    @Query() query: ExpressQuery,
+  ): Promise<Course[]> {
+    return this.courseService.findBySubCategory(query);
+  }
+
   //Get course by id
   @Get(':id')
   async getCourse(
@@ -63,6 +77,7 @@ export class CourseController {
     course: CreateCourseDto,
     @Req() req,
   ): Promise<Course> {
+    // const data = await this.authService.findUser(id);
     // console.log(req);
     return this.courseService.createCourse(course, req.user);
   }
