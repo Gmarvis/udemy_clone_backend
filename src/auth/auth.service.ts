@@ -59,4 +59,14 @@ export class AuthService {
       runValidators: true,
     });
   }
+
+  // get all user
+  async getAllUser(): Promise<User[]> {
+    return await this.userModel.find();
+  }
+
+  // find user by id
+  async findUser(id: string): Promise<User> {
+    return await this.userModel.findById(id);
+  }
 }

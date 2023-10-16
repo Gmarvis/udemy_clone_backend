@@ -15,6 +15,16 @@ const Points = [
   },
 
   {
+    name: 'get all users',
+    endPoint: 'localhost:3000/auth/users',
+  },
+
+  {
+    name: 'find user by id',
+    endPoint: 'localhost:3000/auth/65260adc4ec79d95cdd8e90d',
+  },
+
+  {
     name: 'get all course',
     endPoint: 'localhost:3000/courses',
   },
@@ -41,7 +51,7 @@ const Points = [
 
   {
     name: 'get course by authors name',
-    endPoint: 'localhost:3000/courses/author/sam',
+    endPoint: 'localhost:3000/courses/?keyword=name',
   },
 ];
 

@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/signUp.dto';
 import { LoginDto } from './dto/login.dto';
@@ -30,5 +30,20 @@ export class AuthController {
     user: UpdateProfileDto,
   ): Promise<User> {
     return this.authService.updateProfile(id, user);
+  }
+
+  // finUserBy id
+  @Get(':id')
+  async FindUser(
+    @Param('id')
+    id: string,
+  ): Promise<User> {
+    return this.authService.findUser(id);
+  }
+
+  // get all users
+  @Get()
+  async GetAllUsers(): Promise<User[]> {
+    return this.authService.getAllUser();
   }
 }

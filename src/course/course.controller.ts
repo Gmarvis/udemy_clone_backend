@@ -77,6 +77,7 @@ export class CourseController {
     course: CreateCourseDto,
     @Req() req,
   ): Promise<Course> {
+    // const data = await this.authService.findUser(id);
     // console.log(req);
     return this.courseService.createCourse(course, req.user);
   }

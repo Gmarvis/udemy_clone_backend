@@ -29,6 +29,9 @@ export class UpdateCourseDto {
   readonly author: User;
 
   @IsOptional()
+  authorInfor: [];
+
+  @IsOptional()
   category: string;
 
   @IsOptional()
