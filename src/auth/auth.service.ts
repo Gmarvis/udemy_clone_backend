@@ -19,7 +19,7 @@ export class AuthService {
   // signup logic
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
     const { name, email, password } = signUpDto;
-    console.log({ name, email, password });
+    console.log('service', { name, email, password });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 

@@ -11,8 +11,9 @@ export class AuthController {
 
   // signup
   @Post('/signup')
-  signUp(@Body() signUpDto: SignUpDto): Promise<{ token: string }> {
-    console.log(signUpDto);
+  async signUp(@Body() signUpDto: SignUpDto): Promise<any> {
+    console.log('dto', signUpDto);
+
     return this.authService.signUp(signUpDto);
   }
 
