@@ -48,4 +48,12 @@ export class AuthController {
   async GetAllUsers(): Promise<User[]> {
     return this.authService.getAllUser();
   }
+
+  @Get('user/:token')
+  async GetUserFronToken(
+    @Param('token')
+    token: string,
+  ): Promise<User> {
+    return await this.authService.getFronToken(token);
+  }
 }
