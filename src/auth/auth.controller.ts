@@ -12,7 +12,7 @@ export class AuthController {
   // signup
   @Post('/signup')
   async signUp(@Body() signUpDto: SignUpDto): Promise<any> {
-    console.log('dto', signUpDto);
+    // console.log('dto', signUpDto);
 
     return this.authService.signUp(signUpDto);
   }

@@ -19,7 +19,7 @@ export class AuthService {
   // signup logic
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
     const { name, email, password } = signUpDto;
-    console.log('service', { name, email, password });
+    // console.log('service', { name, email, password });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -86,8 +86,8 @@ export class AuthService {
   // get user with token
   async getFronToken(token: string): Promise<User> {
     const userData = this.jwtService.verify(token);
-    console.log(': ', userData);
-    return userData;
+    console.log('userData: ', userData);
+    return await this.userModel.findById(userData.id);
   }
 
   // delete keys
@@ -98,7 +98,6 @@ export class AuthService {
       if (excluded_keys.includes(key)) continue;
       new_obj[key] = obj[key];
     }
-
     return new_obj;
   };
 }
