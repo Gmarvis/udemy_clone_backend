@@ -86,7 +86,7 @@ export class AuthService {
   // get user with token
   async getFronToken(token: string): Promise<User> {
     const userData = this.jwtService.verify(token);
-    console.log('userData: ', userData);
+    // console.log('userData: ', userData);
     return await this.userModel.findById(userData.id);
   }
 
