@@ -19,7 +19,7 @@ export class AuthService {
   // signup logic
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
     const { name, email, password } = signUpDto;
-    console.log({ name, email, password });
+    // console.log('service', { name, email, password });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -49,7 +49,19 @@ export class AuthService {
     if (!isPasswordMatch) {
       throw new UnauthorizedException('in correct password');
     }
-    const token = this.jwtService.sign({ id: user._id });
+    const token = this.jwtService.sign({
+      id: user._id,
+      name: user.name,
+      lastname: user.lastname,
+      email: user.email,
+      avatar: user.avatar,
+      headline: user.headline,
+      biography: user.biography,
+      website: user.website,
+      facebook: user.facebook,
+      linkedin: user.linkedin,
+      youtube: user.youtube,
+    });
     return { token };
   }
 
@@ -70,4 +82,22 @@ export class AuthService {
   async findUser(id: string): Promise<User> {
     return await this.userModel.findById(id);
   }
+
+  // get user with token
+  async getFronToken(token: string): Promise<User> {
+    const userData = this.jwtService.verify(token);
+    // console.log('userData: ', userData);
+    return await this.userModel.findById(userData.id);
+  }
+
+  // delete keys
+  removeKeys: (obj, excluded_keys: string[]) => any = (obj, excluded_keys) => {
+    const new_obj = {};
+
+    for (const key in obj) {
+      if (excluded_keys.includes(key)) continue;
+      new_obj[key] = obj[key];
+    }
+    return new_obj;
+  };
 }

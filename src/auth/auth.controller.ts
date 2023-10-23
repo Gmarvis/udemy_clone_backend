@@ -11,8 +11,9 @@ export class AuthController {
 
   // signup
   @Post('/signup')
-  signUp(@Body() signUpDto: SignUpDto): Promise<{ token: string }> {
-    console.log(signUpDto);
+  async signUp(@Body() signUpDto: SignUpDto): Promise<any> {
+    // console.log('dto', signUpDto);
+
     return this.authService.signUp(signUpDto);
   }
 
@@ -46,5 +47,13 @@ export class AuthController {
   @Get()
   async GetAllUsers(): Promise<User[]> {
     return this.authService.getAllUser();
+  }
+
+  @Get('user/:token')
+  async GetUserFronToken(
+    @Param('token')
+    token: string,
+  ): Promise<User> {
+    return await this.authService.getFronToken(token);
   }
 }

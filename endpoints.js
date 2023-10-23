@@ -11,7 +11,7 @@ export const Points = [
 
   {
     name: 'update profile',
-    endPoint: 'localhost:3000/auth/65260adc4ec79d95cdd8e90d',
+    endPoint: 'localhost:3000/auth/:id',
   },
 
   {
@@ -21,7 +21,12 @@ export const Points = [
 
   {
     name: 'find user by id',
-    endPoint: 'localhost:3000/auth/65260adc4ec79d95cdd8e90d',
+    endPoint: 'localhost:3000/auth/:id',
+  },
+
+  {
+    name: 'find user by token',
+    endPoint: 'localhost:3000/auth/:token',
   },
 
   {
