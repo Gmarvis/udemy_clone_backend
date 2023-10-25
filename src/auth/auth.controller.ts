@@ -53,7 +53,7 @@ export class AuthController {
   async GetUserFronToken(
     @Param('token')
     token: string,
-  ): Promise<User> {
+  ): Promise<Omit<User, 'password'>> {
     return await this.authService.getFronToken(token);
   }
 }
