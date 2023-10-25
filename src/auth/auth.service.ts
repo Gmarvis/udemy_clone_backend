@@ -51,16 +51,6 @@ export class AuthService {
     }
     const token = this.jwtService.sign({
       id: user._id,
-      name: user.name,
-      lastname: user.lastname,
-      email: user.email,
-      avatar: user.avatar,
-      headline: user.headline,
-      biography: user.biography,
-      website: user.website,
-      facebook: user.facebook,
-      linkedin: user.linkedin,
-      youtube: user.youtube,
     });
     return { token };
   }
@@ -84,10 +74,12 @@ export class AuthService {
   }
 
   // get user with token
-  async getFronToken(token: string): Promise<User> {
+  async getFronToken(token: string): Promise<Omit<User, 'password'>> {
     const userData = this.jwtService.verify(token);
     // console.log('userData: ', userData);
-    return await this.userModel.findById(userData.id);
+    const user = await this.userModel.findById(userData.id);
+    delete user.password;
+    return user;
   }
 
   // delete keys
