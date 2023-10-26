@@ -1,4 +1,4 @@
-import { IsEmpty, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsEmpty, IsNotEmpty, IsString } from 'class-validator';
 import { User } from 'src/auth/schemas/user.schema';
 
 export class CreateCourseDto {
@@ -11,8 +11,8 @@ export class CreateCourseDto {
   readonly decription: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  readonly price: number;
+  @IsString()
+  readonly price: string;
 
   @IsNotEmpty()
   @IsString()

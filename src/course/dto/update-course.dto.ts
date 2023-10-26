@@ -11,8 +11,8 @@ export class UpdateCourseDto {
   readonly decription: string;
 
   @IsOptional()
-  @IsNumber()
-  readonly price: number;
+  @IsString()
+  readonly price: string;
 
   @IsOptional()
   @IsString()

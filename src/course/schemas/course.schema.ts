@@ -17,7 +17,7 @@ export class Course {
   decription: string;
 
   @Prop()
-  price: number;
+  price: string;
 
   @Prop()
   image: string;
