@@ -14,7 +14,10 @@ export class Course {
   title: string;
 
   @Prop()
-  decription: string;
+  subTitle: string;
+
+  @Prop()
+  description: string;
 
   @Prop()
   price: number;
@@ -32,7 +35,10 @@ export class Course {
   subcategory: string;
 
   @Prop()
-  PopularTopicID: string;
+  language: string;
+
+  @Prop()
+  level: string;
 
   @Prop({ default: 0 })
   likes: number;

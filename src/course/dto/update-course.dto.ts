@@ -8,7 +8,11 @@ export class UpdateCourseDto {
 
   @IsOptional()
   @IsString()
-  readonly decription: string;
+  readonly subTitle: string;
+
+  @IsOptional()
+  @IsString()
+  readonly description: string;
 
   @IsOptional()
   @IsNumber()
@@ -36,6 +40,12 @@ export class UpdateCourseDto {
 
   @IsOptional()
   subcategory: string;
+
+  @IsOptional()
+  readonly language: string;
+
+  @IsOptional()
+  level: string;
 
   @IsOptional()
   @IsNumber()
