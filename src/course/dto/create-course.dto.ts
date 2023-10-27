@@ -1,4 +1,4 @@
-import { IsEmpty, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmpty, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { User } from 'src/auth/schemas/user.schema';
 
 export class CreateCourseDto {
@@ -8,11 +8,15 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   @IsString()
-  readonly decription: string;
+  subTitle: string;
 
   @IsNotEmpty()
   @IsString()
-  readonly price: string;
+  readonly description: string;
+
+  @IsNotEmpty()
+  @IsNumber()
+  readonly price: number;
 
   @IsNotEmpty()
   @IsString()
@@ -22,13 +26,18 @@ export class CreateCourseDto {
   readonly materials: [];
 
   @IsNotEmpty()
-  category: string;
+  readonly category: string;
 
   @IsNotEmpty()
-  subcategory: string;
+  readonly subcategory: string;
+
+  @IsNotEmpty()
+  readonly language: string;
+
+  @IsNotEmpty()
+  level: string;
 
   readonly PopularTopicID: string;
-
   @IsEmpty({ message: 'you can not pass user id' })
   readonly author: User;
 
