@@ -21,9 +21,12 @@ export class CategoryService {
 
   // get subcategories by Categories
   async getSubcategoriesByCategory(categoryId: string): Promise<Subcategory[]> {
-    return await this.categoryModel
+    const categories = await this.categoryModel
       .findById(categoryId)
-      .populate('subcategories');
+      .populate('subcategories')
+      .exec();
+
+    return categories.subcategories;
   }
 
   // find all Categories

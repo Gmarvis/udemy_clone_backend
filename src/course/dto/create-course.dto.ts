@@ -1,5 +1,13 @@
-import { IsEmpty, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsEmpty,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  IsBoolean,
+} from 'class-validator';
 import { User } from 'src/auth/schemas/user.schema';
+import { Category } from 'src/category/schemas/category.schema';
+import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
 
 export class CreateCourseDto {
   @IsNotEmpty()
@@ -22,10 +30,13 @@ export class CreateCourseDto {
   readonly materials: [];
 
   @IsNotEmpty()
-  category: string;
+  category: Category;
+
+  @IsBoolean()
+  isSaveForLater: boolean;
 
   @IsNotEmpty()
-  subcategory: string;
+  subcategory: Subcategory;
 
   readonly PopularTopicID: string;
 

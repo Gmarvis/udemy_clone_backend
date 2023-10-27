@@ -32,4 +32,8 @@ export class UpdateProfileDto {
   @IsOptional()
   @IsString()
   readonly yotube: string;
+
+  @IsOptional()
+  @IsString()
+  readonly roles: [string];
 }

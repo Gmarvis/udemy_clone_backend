@@ -15,6 +15,7 @@ export class Category {
   @Prop()
   image: string;
 
+  // * not necessary
   @Prop({ type: [mongoose.Schema.Types.ObjectId], ref: 'Subcategory' })
   subcategories: Subcategory[];
 }

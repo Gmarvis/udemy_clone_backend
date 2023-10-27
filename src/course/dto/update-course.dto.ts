@@ -1,5 +1,13 @@
-import { IsEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsBoolean,
+} from 'class-validator';
 import { User } from 'src/auth/schemas/user.schema';
+import { Category } from 'src/category/schemas/category.schema';
+import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
 
 export class UpdateCourseDto {
   @IsOptional()
@@ -28,14 +36,24 @@ export class UpdateCourseDto {
   @IsEmpty({ message: 'you can not pass user id' })
   readonly author: User;
 
-  @IsOptional()
-  authorInfor: [];
+  // @IsOptional()
+  // authorInfor: [];
+
+  // @IsOptional()
+  // category: string;
 
   @IsOptional()
-  category: string;
+  @IsBoolean()
+  isSaveForLater: boolean;
 
   @IsOptional()
-  subcategory: string;
+  category: Category;
+
+  // @IsOptional()
+  // subcategory: string;
+
+  @IsOptional()
+  subcategory: Subcategory;
 
   @IsOptional()
   @IsNumber()

@@ -9,6 +9,7 @@ export class CreateCategoryDto {
   @IsString()
   readonly image: string;
 
+  //* bad field
   @IsArray()
   subcategories: Subcategory[];
 }

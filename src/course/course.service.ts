@@ -98,7 +98,12 @@ export class CourseService {
   async findByAuthor(name: string): Promise<Course[]> {
     return await this.courseModel.find({ name });
   }
+
   /*******************find course by author is not working yet************************/
+
+  async findCoursesByAuthor(authorId: string, role: string): Promise<Course[]> {
+    return await this.courseModel.find({ author: authorId, role }).exec();
+  }
 
   // find course and delete
   async findAndDelete(id: string): Promise<Course> {
@@ -108,5 +113,15 @@ export class CourseService {
       throw new NotFoundException('course not found');
     }
     return course;
+  }
+
+  async saveCourseForLater(courseId: string): Promise<boolean> {
+    const existingCourse = await this.courseModel.findById(courseId).exec();
+    existingCourse.isSaveForLater = true;
+    console.log('courseId: ', courseId);
+    const savedCourse = await existingCourse.save();
+    console.log(' service savedCourse: ', savedCourse);
+    if (savedCourse) return true;
+    else return false;
   }
 }

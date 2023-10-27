@@ -41,7 +41,7 @@ export class UserDto {
   @IsString()
   readonly linkedin: string;
 
-  //   @IsOptional()
-  //   @IsString()
-  //   readonly yotube: string;
+  @IsOptional()
+  @IsString()
+  readonly roles: [string];
 }

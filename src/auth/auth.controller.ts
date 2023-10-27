@@ -39,7 +39,7 @@ export class AuthController {
   async FindUser(
     @Param('id')
     id: string,
-  ): Promise<User> {
+  ): Promise<Omit<User, 'password'>> {
     return this.authService.findUser(id);
   }
 

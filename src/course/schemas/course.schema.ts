@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { User } from 'src/auth/schemas/user.schema';
+import { Category } from 'src/category/schemas/category.schema';
+import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
 // import { User } from 'src/user/schemas/user.schema';
 // import { HydratedDocument } from 'mongoose';
 
@@ -25,11 +27,15 @@ export class Course {
   @Prop()
   materials: [];
 
-  @Prop()
-  category: string;
+  @Prop({ default: false })
+  isSaveForLater: boolean;
+  // @Prop()
+  // category: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
+  category: Category;
 
-  @Prop()
-  subcategory: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'SubCategory' })
+  subcategory: Subcategory;
 
   @Prop()
   PopularTopicID: string;
@@ -40,11 +46,11 @@ export class Course {
   @Prop({ default: 0 })
   dislikes: number;
 
-  @Prop({ type: mongoose.Schema.Types.String })
+  @Prop({ type: mongoose.Schema.Types.String, ref: 'User' })
   author: User;
 
-  @Prop()
-  authorInfor: [];
+  // @Prop()
+  // authorInfor: [];
 }
 
 export const CourseSchema = SchemaFactory.createForClass(Course);

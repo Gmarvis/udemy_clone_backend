@@ -39,6 +39,9 @@ export class User extends Document {
   @Prop()
   @Exclude()
   password: string;
+
+  @Prop({ default: 'student' })
+  roles: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
