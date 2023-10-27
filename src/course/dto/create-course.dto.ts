@@ -16,7 +16,11 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   @IsString()
-  readonly decription: string;
+  subTitle: string;
+
+  @IsNotEmpty()
+  @IsString()
+  readonly description: string;
 
   @IsNotEmpty()
   @IsNumber()
@@ -38,8 +42,13 @@ export class CreateCourseDto {
   @IsNotEmpty()
   subcategory: Subcategory;
 
-  readonly PopularTopicID: string;
+  @IsNotEmpty()
+  readonly language: string;
 
+  @IsNotEmpty()
+  level: string;
+
+  readonly PopularTopicID: string;
   @IsEmpty({ message: 'you can not pass user id' })
   readonly author: User;
 
