@@ -58,4 +58,10 @@ export class CreateCourseDto {
   likes: number;
 
   dislikes: number;
+
+  totalHours: number;
+
+  lectures: number;
+
+  participants: number;
 }

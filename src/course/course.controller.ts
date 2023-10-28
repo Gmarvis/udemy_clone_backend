@@ -9,6 +9,7 @@ import {
   Query,
   Req,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CourseService } from './course.service';
 import { Course } from './schemas/course.schema';
@@ -18,6 +19,8 @@ import { AuthGuard } from '@nestjs/passport';
 import { Query as ExpressQuery } from 'express-serve-static-core';
 import { Role } from 'src/auth/guard/roles/roles.enum';
 import { Roles } from 'src/auth/guard/roles/roles.decorators';
+import { CoursesInterceptor } from './interceptor/interceptor.interceptor';
+import { Transform } from 'class-transformer';
 
 @Controller('courses')
 export class CourseController {
@@ -25,6 +28,8 @@ export class CourseController {
 
   //get all courses
   @Get()
+  @UseInterceptors(CoursesInterceptor)
+  @Transform((value) => value.obj._id.toString())
   async getAllCourses(@Query() query: ExpressQuery): Promise<Course[]> {
     return this.courseService.findAll(query);
   }

@@ -72,4 +72,16 @@ export class UpdateCourseDto {
   @IsOptional()
   @IsNumber()
   dislikes: number;
+
+  @IsOptional()
+  @IsNumber()
+  totalHours: number;
+
+  @IsOptional()
+  @IsNumber()
+  lectures: number;
+
+  @IsOptional()
+  @IsNumber()
+  participants: number;
 }
