@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { User } from 'src/auth/schemas/user.schema';
-import { Category } from 'src/category/schemas/category.schema';
-import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
+// import { Category } from 'src/category/schemas/category.schema';
+// import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
 // import { User } from 'src/user/schemas/user.schema';
 // import { HydratedDocument } from 'mongoose';
 
@@ -30,8 +30,8 @@ export class Course {
   @Prop()
   materials: [];
 
-  @Prop({ default: false })
-  isSaveForLater: boolean;
+  // @Prop({ default: false })
+  // isSaveForLater: boolean;
   @Prop()
   category: string;
   // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })

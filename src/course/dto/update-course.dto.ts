@@ -3,11 +3,11 @@ import {
   IsNumber,
   IsOptional,
   IsString,
-  IsBoolean,
+  // IsBoolean,
 } from 'class-validator';
 import { User } from 'src/auth/schemas/user.schema';
-import { Category } from 'src/category/schemas/category.schema';
-import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
+// import { Category } from 'src/category/schemas/category.schema';
+// import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
 
 export class UpdateCourseDto {
   @IsOptional()
@@ -46,9 +46,9 @@ export class UpdateCourseDto {
   @IsOptional()
   category: string;
 
-  @IsOptional()
-  @IsBoolean()
-  isSaveForLater: boolean;
+  // @IsOptional()
+  // @IsBoolean()
+  // isSaveForLater: boolean;
 
   // @IsOptional()
   // category: Category;

@@ -3,11 +3,11 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
-  IsBoolean,
+  // IsBoolean,
 } from 'class-validator';
 import { User } from 'src/auth/schemas/user.schema';
-import { Category } from 'src/category/schemas/category.schema';
-import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
+// import { Category } from 'src/category/schemas/category.schema';
+// import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
 
 export class CreateCourseDto {
   @IsNotEmpty()
@@ -37,8 +37,8 @@ export class CreateCourseDto {
   // category: Category;
   category: string;
 
-  @IsBoolean()
-  isSaveForLater: boolean;
+  // @IsBoolean()
+  // isSaveForLater: boolean;
 
   @IsNotEmpty()
   // subcategory: Subcategory;

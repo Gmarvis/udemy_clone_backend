@@ -117,9 +117,9 @@ export class CourseController {
     return this.courseService.UpdateById(id, course);
   }
 
-  @Post('saveforlater')
-  saveForLater(@Body() data: any): Promise<boolean> {
-    console.log('controller savedCourse: ', data.id);
-    return this.courseService.saveCourseForLater(data.id);
-  }
+  // @Post('saveforlater')
+  // saveForLater(@Body() data: any): Promise<boolean> {
+  //   console.log('controller savedCourse: ', data.id);
+  //   return this.courseService.saveCourseForLater(data.id);
+  // }
 }
