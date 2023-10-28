@@ -32,13 +32,16 @@ export class Course {
 
   @Prop({ default: false })
   isSaveForLater: boolean;
-  // @Prop()
-  // category: string;
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
-  category: Category;
+  @Prop()
+  category: string;
+  // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Category' })
+  // category: Category;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'SubCategory' })
-  subcategory: Subcategory;
+  // @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'SubCategory' })
+  // subcategory: Subcategory;
+
+  @Prop()
+  subSategory: string;
 
   @Prop()
   language: string;

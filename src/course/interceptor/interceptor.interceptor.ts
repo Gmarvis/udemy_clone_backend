@@ -16,7 +16,7 @@ export class CoursesInterceptor implements NestInterceptor {
       delete response._id;
     }
 
-    console.log(response);
+    // console.log(response);
     return next.handle();
   }
 }

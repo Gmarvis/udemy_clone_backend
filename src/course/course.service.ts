@@ -116,9 +116,10 @@ export class CourseService {
   }
 
   async saveCourseForLater(courseId: string): Promise<boolean> {
-    const existingCourse = await this.courseModel.findById(courseId).exec();
+    const id = new mongoose.Types.ObjectId(courseId);
+    const existingCourse = await this.courseModel.findById({ _id: id }).exec();
     existingCourse.isSaveForLater = true;
-    console.log('courseId: ', courseId);
+    console.log('existingCourse: ', existingCourse);
     const savedCourse = await existingCourse.save();
     console.log(' service savedCourse: ', savedCourse);
     if (savedCourse) return true;

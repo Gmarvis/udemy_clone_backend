@@ -34,13 +34,15 @@ export class CreateCourseDto {
   readonly materials: [];
 
   @IsNotEmpty()
-  category: Category;
+  // category: Category;
+  category: string;
 
   @IsBoolean()
   isSaveForLater: boolean;
 
   @IsNotEmpty()
-  subcategory: Subcategory;
+  // subcategory: Subcategory;
+  subSategory: string;
 
   @IsNotEmpty()
   readonly language: string;

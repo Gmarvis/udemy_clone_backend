@@ -43,21 +43,21 @@ export class UpdateCourseDto {
   // @IsOptional()
   // authorInfor: [];
 
-  // @IsOptional()
-  // category: string;
+  @IsOptional()
+  category: string;
 
   @IsOptional()
   @IsBoolean()
   isSaveForLater: boolean;
 
+  // @IsOptional()
+  // category: Category;
+
   @IsOptional()
-  category: Category;
+  subSategory: string;
 
   // @IsOptional()
-  // subcategory: string;
-
-  @IsOptional()
-  subcategory: Subcategory;
+  // subcategory: Subcategory;
 
   @IsOptional()
   readonly language: string;
