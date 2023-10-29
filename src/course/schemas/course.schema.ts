@@ -41,7 +41,7 @@ export class Course {
   // subcategory: Subcategory;
 
   @Prop()
-  subSategory: string;
+  subcategory: string;
 
   @Prop()
   language: string;

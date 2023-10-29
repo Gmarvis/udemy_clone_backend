@@ -54,7 +54,7 @@ export class UpdateCourseDto {
   // category: Category;
 
   @IsOptional()
-  subSategory: string;
+  subcategory: string;
 
   // @IsOptional()
   // subcategory: Subcategory;
