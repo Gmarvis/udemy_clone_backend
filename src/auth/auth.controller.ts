@@ -39,7 +39,7 @@ export class AuthController {
   async FindUser(
     @Param('id')
     id: string,
-  ): Promise<User> {
+  ): Promise<Omit<User, 'password'>> {
     return this.authService.findUser(id);
   }
 
@@ -55,5 +55,10 @@ export class AuthController {
     token: string,
   ): Promise<Omit<User, 'password'>> {
     return await this.authService.getFronToken(token);
+  }
+
+  @Post('logout')
+  logout(): Promise<{ token: string }> {
+    return this.authService.logout();
   }
 }

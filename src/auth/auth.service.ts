@@ -51,8 +51,13 @@ export class AuthService {
     }
     const token = this.jwtService.sign({
       id: user._id,
+      username: email,
     });
     return { token };
+  }
+
+  async logout(): Promise<{ token: '' }> {
+    return { token: '' };
   }
 
   // update profile function
@@ -64,12 +69,12 @@ export class AuthService {
   }
 
   // get all user
-  async getAllUser(): Promise<User[]> {
+  async getAllUser(): Promise<Omit<User[], 'password'>> {
     return await this.userModel.find();
   }
 
   // find user by id
-  async findUser(id: string): Promise<User> {
+  async findUser(id: string): Promise<Omit<User, 'password'>> {
     return await this.userModel.findById(id);
   }
 
@@ -77,8 +82,8 @@ export class AuthService {
   async getFronToken(token: string): Promise<Omit<User, 'password'>> {
     const userData = this.jwtService.verify(token);
     // console.log('userData: ', userData);
-    const user = await this.userModel.findById(userData.id);
-    delete user.password;
+    const user = await this.userModel.findById(userData.id).select('-password');
+    // delete user.password;
     return user;
   }
 

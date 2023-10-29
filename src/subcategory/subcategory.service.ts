@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
 import { Subcategory } from './schemas/subcategery.schema';
-import { Category } from 'src/category/schemas/category.schema';
+// import { Category } from 'src/category/schemas/category.schema';
 
 @Injectable()
 export class SubcategoryService {
@@ -17,9 +17,11 @@ export class SubcategoryService {
   }
 
   // get categories by subcategories
-  async getCategoryBySubcategory(subcategoryId: string): Promise<Category> {
+  async getSubCategoriesFromCategory(
+    categoryId: string,
+  ): Promise<Subcategory[]> {
     return await this.subcategoryModel
-      .findById(subcategoryId)
-      .populate('category');
+      .find({ category: categoryId }, 'name')
+      .exec();
   }
 }

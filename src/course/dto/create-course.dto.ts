@@ -1,5 +1,13 @@
-import { IsEmpty, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsEmpty,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  // IsBoolean,
+} from 'class-validator';
 import { User } from 'src/auth/schemas/user.schema';
+// import { Category } from 'src/category/schemas/category.schema';
+// import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
 
 export class CreateCourseDto {
   @IsNotEmpty()
@@ -26,10 +34,15 @@ export class CreateCourseDto {
   readonly materials: [];
 
   @IsNotEmpty()
-  readonly category: string;
+  // category: Category;
+  category: string;
+
+  // @IsBoolean()
+  // isSaveForLater: boolean;
 
   @IsNotEmpty()
-  readonly subcategory: string;
+  // subcategory: Subcategory;
+  subSategory: string;
 
   @IsNotEmpty()
   readonly language: string;
@@ -47,4 +60,10 @@ export class CreateCourseDto {
   likes: number;
 
   dislikes: number;
+
+  totalHours: number;
+
+  lectures: number;
+
+  participants: number;
 }

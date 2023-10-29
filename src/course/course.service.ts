@@ -98,7 +98,12 @@ export class CourseService {
   async findByAuthor(name: string): Promise<Course[]> {
     return await this.courseModel.find({ name });
   }
+
   /*******************find course by author is not working yet************************/
+
+  async findCoursesByAuthor(authorId: string, role: string): Promise<Course[]> {
+    return await this.courseModel.find({ author: authorId, role }).exec();
+  }
 
   // find course and delete
   async findAndDelete(id: string): Promise<Course> {

@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { Category } from './schemas/category.schema';
 import { Subcategory } from 'src/subcategory/schemas/subcategery.schema';
+
 // import { CreateCategoryDto } from './dto/create-categery.dto';
 
 @Controller('category')
