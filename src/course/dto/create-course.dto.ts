@@ -42,7 +42,7 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   // subcategory: Subcategory;
-  subSategory: string;
+  subcategory: string;
 
   @IsNotEmpty()
   readonly language: string;
