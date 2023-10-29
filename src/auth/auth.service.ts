@@ -56,6 +56,10 @@ export class AuthService {
     return { token };
   }
 
+  async logout(): Promise<{ token: '' }> {
+    return { token: '' };
+  }
+
   // update profile function
   async updateProfile(id: string, user: UpdateProfileDto): Promise<User> {
     return await this.userModel.findByIdAndUpdate(id, user, {

@@ -61,12 +61,17 @@ export class SaveforlaterService {
     return [];
   }
 
-  async removeSavedCourse(courseId: string, userId: string): Promise<void> {
+  async removeSavedCourse(
+    courseId: string,
+    userId: string,
+  ): Promise<SaveForLater> {
     console.log('hit remove service');
 
-    return this.saveForLaterModel.findOneAndDelete({
+    const removedCourse = await this.saveForLaterModel.findOneAndDelete({
       course: courseId,
       user: userId,
     });
+
+    return removedCourse;
   }
 }

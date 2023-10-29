@@ -56,4 +56,9 @@ export class AuthController {
   ): Promise<Omit<User, 'password'>> {
     return await this.authService.getFronToken(token);
   }
+
+  @Post('logout')
+  logout(): Promise<{ token: string }> {
+    return this.authService.logout();
+  }
 }

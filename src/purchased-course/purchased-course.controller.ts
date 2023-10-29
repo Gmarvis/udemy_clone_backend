@@ -1,6 +1,7 @@
-import { Body, Controller, Post, Get, Param } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, Delete } from '@nestjs/common';
 import { PurchasedCourseService } from './purchased-course.service';
 import { Course } from 'src/course/schemas/course.schema';
+import { PurchasedCourse } from './schemas/purchaseed-course.schema';
 
 @Controller('purchasedcourse')
 export class PurchasedCourseController {
@@ -19,7 +20,18 @@ export class PurchasedCourseController {
   @Get(':id')
   // getPaidCourses(@Body() data: any): Promise<any> {
   getPaidCourses(@Param('id') id: string): Promise<Course[]> {
-    console.log('id', id);
+    console.log('hit paid course controller id', id);
     return this.purshasedCourseService.getAllCoursesPaidByAUser(id);
+  }
+
+  @Delete()
+  removePurshasedCourse(
+    @Body() data: { courseId: string; userId: string },
+  ): Promise<PurchasedCourse> {
+    console.log('hit saveforlater endpoind');
+    return this.purshasedCourseService.removePurshasedCourse(
+      data.courseId,
+      data.userId,
+    );
   }
 }

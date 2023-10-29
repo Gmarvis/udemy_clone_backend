@@ -35,9 +35,9 @@ export class PurchasedCourseService {
         });
 
         // console.log('newId', newId);
-        await newPurshasedC.save();
+        const newPC = await newPurshasedC.save();
         // console.log('newPurshasedC', newPurshasedC);
-        result.push(newPurshasedC);
+        result.push(newPC);
       } else {
         console.log('already bought');
       }
@@ -61,5 +61,19 @@ export class PurchasedCourseService {
     );
 
     return courses;
+  }
+
+  async removePurshasedCourse(
+    courseId: string,
+    userId: string,
+  ): Promise<PurchasedCourse> {
+    console.log('hit remove service');
+
+    const removedCourse = await this.purchaseCourseModel.findOneAndDelete({
+      course: courseId,
+      user: userId,
+    });
+
+    return removedCourse;
   }
 }
