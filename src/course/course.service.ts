@@ -114,15 +114,4 @@ export class CourseService {
     }
     return course;
   }
-
-  // async saveCourseForLater(courseId: string): Promise<boolean> {
-  //   const id = new mongoose.Types.ObjectId(courseId);
-  //   const existingCourse = await this.courseModel.findById({ _id: id }).exec();
-  //   existingCourse.isSaveForLater = true;
-  //   console.log('existingCourse: ', existingCourse);
-  //   const savedCourse = await existingCourse.save();
-  //   console.log(' service savedCourse: ', savedCourse);
-  //   if (savedCourse) return true;
-  //   else return false;
-  // }
 }

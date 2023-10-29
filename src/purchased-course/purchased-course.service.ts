@@ -4,11 +4,6 @@ import { PurchasedCourse } from './schemas/purchaseed-course.schema';
 import mongoose from 'mongoose';
 import { CourseService } from 'src/course/course.service';
 
-// import { Course } from 'src/course/schemas/course.schema';
-// import { PurshasedCourses } from './dto/purshasedCourses.dto';
-// import { User } from 'src/auth/schemas/user.schema';
-// import { CourseService } from 'src/course/course.service';
-
 @Injectable()
 export class PurchasedCourseService {
   constructor(
